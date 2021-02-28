@@ -7,6 +7,7 @@ type Props = {
   onSelectedStep: (step: ArrayProxyStep) => void;
 };
 export default function StepsViewer(props: Props): JSX.Element {
+  const theme = useTheme();
   const renderedSteps = props.steps
     .slice()
     .reverse()
@@ -17,13 +18,13 @@ export default function StepsViewer(props: Props): JSX.Element {
             onClick={() => props.onSelectedStep(step)}
             style={{
               cursor: 'pointer',
-              backgroundColor: useTheme().palette.primary.light,
+              backgroundColor: theme.palette.primary.light,
             }}
           >
             <Box padding={1}>
               <Typography
                 align="left"
-                style={{ color: useTheme().palette.primary.contrastText }}
+                style={{ color: theme.palette.primary.contrastText }}
               >
                 {step.description}
               </Typography>
