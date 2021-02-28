@@ -10,7 +10,6 @@ const snippets: { name: string; value: string }[] = [
     let wasSwap = false;
     for (let j = 0; j < arrayProxy.array.length - 1 - i; j++) {
       arrayProxy.primaryIndex = j;
-      yield undefined;
       arrayProxy.secondaryIndex = j + 1;
       yield undefined;
       if (arrayProxy.compare() > 0) {
