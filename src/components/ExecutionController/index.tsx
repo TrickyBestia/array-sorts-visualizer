@@ -1,6 +1,6 @@
 import { Button, Grid } from '@material-ui/core';
 import { Add, PlayArrow, SkipNext } from '@material-ui/icons';
-import React, { useState } from 'react';
+import React from 'react';
 import ArrayProxy from '../../utils/ArrayProxy';
 
 type Props = {
@@ -10,7 +10,6 @@ type Props = {
   addNewElement: (element: number) => void;
 };
 export default function ExecutionController(props: Props): JSX.Element {
-  const [previousIsDone, setPreviousIsDone] = useState(false);
   const isEnabled = props.sortIterator !== undefined;
   return (
     <Grid container direction="row" spacing={1}>
@@ -22,12 +21,9 @@ export default function ExecutionController(props: Props): JSX.Element {
           onClick={async () => {
             for (;;) {
               if (props.sortIterator?.next().done) {
-                if (!previousIsDone) {
-                  setPreviousIsDone(() => true);
-                  props.onSortDone();
-                }
+                props.onSortDone();
                 break;
-              } else setPreviousIsDone(() => false);
+              }
               await new Promise((resolve) => setTimeout(resolve, 200));
             }
           }}
@@ -42,11 +38,8 @@ export default function ExecutionController(props: Props): JSX.Element {
           disabled={!isEnabled}
           onClick={() => {
             if (props.sortIterator?.next().done) {
-              if (!previousIsDone) {
-                setPreviousIsDone(() => true);
-                props.onSortDone();
-              }
-            } else setPreviousIsDone(() => false);
+              props.onSortDone();
+            }
           }}
         >
           <SkipNext />
