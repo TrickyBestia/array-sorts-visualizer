@@ -1,11 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import Editor from 'react-simple-code-editor';
 import Prism from 'prismjs';
-import 'prismjs/themes/prism.css';
-import { Box, BoxProps, Button, Grid, Paper } from '@material-ui/core';
-import './style.css';
 import 'prismjs/components/prism-clike';
 import 'prismjs/components/prism-javascript';
+import {
+  Box,
+  BoxProps,
+  Button,
+  Grid,
+  Paper,
+  useTheme,
+} from '@material-ui/core';
+import 'prism-themes/themes/prism-vsc-dark-plus.css';
+import './style.css';
 
 type Props = {
   snippets: { name: string; value: string }[];
@@ -23,9 +30,9 @@ export default function CodeEditor(props: Props): JSX.Element {
     snippetButtons.push(
       <Grid item key={snippet.name}>
         <Button
-          color="primary"
+          color="secondary"
           disabled={props.readOnly}
-          variant="outlined"
+          variant="contained"
           onClick={() => {
             setValue(snippet.value);
             props.onChange(snippet.value);
@@ -46,7 +53,12 @@ export default function CodeEditor(props: Props): JSX.Element {
         ...props.style,
       }}
     >
-      <Paper style={{ height: '100%' }}>
+      <Paper
+        style={{
+          height: '100%',
+          backgroundColor: useTheme().palette.primary.light,
+        }}
+      >
         <Editor
           readOnly={props.readOnly}
           value={value}

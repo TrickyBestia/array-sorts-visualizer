@@ -7,9 +7,17 @@ import './style.css';
 
 const theme = createMuiTheme({
   palette: {
-    primary: { main: '#263238' },
+    primary: {
+      main: '#162228',
+      light: '#2f3b42',
+      dark: '#000a12',
+      contrastText: '#ffffff',
+    },
     secondary: {
-      main: '#455a64',
+      main: '#ffab00',
+      light: '#ffdd4b',
+      dark: '#c67c00',
+      contrastText: '#000000',
     },
   },
 });

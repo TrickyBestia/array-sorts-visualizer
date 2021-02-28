@@ -1,4 +1,4 @@
-import { Grid, Paper } from '@material-ui/core';
+import { Grid, Paper, useTheme } from '@material-ui/core';
 import React from 'react';
 import ArrayProxyStep from '../../utils/ArrayProxyStep';
 import ArrayProxyStepViewerItem from '../ArrayProxyStepViewerItem';
@@ -12,14 +12,14 @@ type Props = {
 export default function ArrayProxyStepViewer(props: Props): JSX.Element {
   const maxItem = Math.max(...props.arrayProxyStep.array);
   const items = props.arrayProxyStep.array.map((item, index) => {
-    let indexColor = '';
+    let indexColor = useTheme().palette.secondary.main;
     if (
       index === props.arrayProxyStep.primaryIndex &&
       index === props.arrayProxyStep.secondaryIndex
     )
-      indexColor = '#FFFF00';
+      indexColor = '#2962ff';
     else if (index === props.arrayProxyStep.primaryIndex)
-      indexColor = '#BFFF00';
+      indexColor = '#64dd17';
     else if (index === props.arrayProxyStep.secondaryIndex)
       indexColor = '#FF2020';
     return (
@@ -38,7 +38,12 @@ export default function ArrayProxyStepViewer(props: Props): JSX.Element {
     );
   });
   return (
-    <Paper style={{ height: '100%' }}>
+    <Paper
+      style={{
+        height: '100%',
+        backgroundColor: useTheme().palette.primary.light,
+      }}
+    >
       <Grid
         style={{ height: '100%' }}
         container

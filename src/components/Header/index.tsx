@@ -4,6 +4,7 @@ import {
   Container,
   Toolbar,
   Typography,
+  useTheme,
 } from '@material-ui/core';
 import React from 'react';
 import githubLogo from './githubLogo.png';
@@ -14,7 +15,10 @@ type Props = {
 export default function Header(props: Props): JSX.Element {
   return (
     <header style={props.style}>
-      <AppBar position="relative" color="primary">
+      <AppBar
+        position="relative"
+        style={{ backgroundColor: useTheme().palette.primary.dark }}
+      >
         <Container fixed>
           <Toolbar>
             <Typography variant="h5">array-sorts-visualizer</Typography>

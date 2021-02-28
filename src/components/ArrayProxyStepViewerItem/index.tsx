@@ -5,6 +5,7 @@ import {
   IconButton,
   Paper,
   Typography,
+  useTheme,
 } from '@material-ui/core';
 import { Delete } from '@material-ui/icons';
 import React, { useState } from 'react';
@@ -45,6 +46,7 @@ export default function ArrayProxyStepViewerItem(props: Props): JSX.Element {
             <Paper
               style={{
                 height: '100%',
+                backgroundColor: useTheme().palette.secondary.main,
               }}
             >
               <Typography align="center">{props.value}</Typography>

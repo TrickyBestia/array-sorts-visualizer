@@ -1,3 +1,6 @@
 .codeEditor .npm__react-simple-code-editor__textarea {
   outline: none;
 }
+.codeEditor pre {
+  color: #d4d4d4;
+}

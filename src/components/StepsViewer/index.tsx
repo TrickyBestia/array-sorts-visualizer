@@ -1,4 +1,4 @@
-import { Grid, Paper, Typography, Box } from '@material-ui/core';
+import { Grid, Paper, Typography, Box, useTheme } from '@material-ui/core';
 import React from 'react';
 import ArrayProxyStep from '../../utils/ArrayProxyStep';
 
@@ -15,10 +15,18 @@ export default function StepsViewer(props: Props): JSX.Element {
         <Grid item key={index}>
           <Paper
             onClick={() => props.onSelectedStep(step)}
-            style={{ cursor: 'pointer' }}
+            style={{
+              cursor: 'pointer',
+              backgroundColor: useTheme().palette.primary.light,
+            }}
           >
             <Box padding={1}>
-              <Typography align="left">{step.description}</Typography>
+              <Typography
+                align="left"
+                style={{ color: useTheme().palette.primary.contrastText }}
+              >
+                {step.description}
+              </Typography>
             </Box>
           </Paper>
         </Grid>
