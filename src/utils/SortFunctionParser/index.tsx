@@ -13,7 +13,6 @@ export default function parse(
     ) as Iterator<undefined, undefined, undefined>;
     /* eslint-enable @typescript-eslint/no-unsafe-member-access */
     /* eslint-enable @typescript-eslint/no-unsafe-call */
-    console.log(sortIterator);
     return sortIterator;
   } catch {
     return undefined;
