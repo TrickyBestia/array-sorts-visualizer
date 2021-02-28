@@ -1,4 +1,5 @@
 import { Button, Grid } from '@material-ui/core';
+import { Add, PlayArrow, SkipNext } from '@material-ui/icons';
 import React, { useState } from 'react';
 import ArrayProxy from '../../utils/ArrayProxy';
 
@@ -15,25 +16,8 @@ export default function ExecutionController(props: Props): JSX.Element {
     <Grid container direction="row" spacing={1}>
       <Grid item>
         <Button
+          variant="outlined"
           style={{ backgroundColor: '#00DD00' }}
-          variant="outlined"
-          disabled={!isEnabled}
-          onClick={() => {
-            if (props.sortIterator?.next().done) {
-              if (!previousIsDone) {
-                setPreviousIsDone(() => true);
-                props.onSortDone();
-              }
-            } else setPreviousIsDone(() => false);
-          }}
-        >
-          Move next
-        </Button>
-      </Grid>
-      <Grid item>
-        <Button
-          style={{ backgroundColor: '#DDDD00' }}
-          variant="outlined"
           disabled={!isEnabled}
           onClick={async () => {
             for (;;) {
@@ -48,7 +32,24 @@ export default function ExecutionController(props: Props): JSX.Element {
             }
           }}
         >
-          Move to end
+          <PlayArrow />
+        </Button>
+      </Grid>
+      <Grid item>
+        <Button
+          variant="outlined"
+          style={{ backgroundColor: '#DDDD00' }}
+          disabled={!isEnabled}
+          onClick={() => {
+            if (props.sortIterator?.next().done) {
+              if (!previousIsDone) {
+                setPreviousIsDone(() => true);
+                props.onSortDone();
+              }
+            } else setPreviousIsDone(() => false);
+          }}
+        >
+          <SkipNext />
         </Button>
       </Grid>
       <Grid item>
@@ -64,7 +65,7 @@ export default function ExecutionController(props: Props): JSX.Element {
             props.addNewElement(element);
           }}
         >
-          Add
+          <Add />
         </Button>
       </Grid>
     </Grid>

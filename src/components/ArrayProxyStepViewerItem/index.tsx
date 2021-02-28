@@ -1,4 +1,12 @@
-import { Box, Button, Grid, Paper, Typography } from '@material-ui/core';
+import {
+  Box,
+  Button,
+  Grid,
+  IconButton,
+  Paper,
+  Typography,
+} from '@material-ui/core';
+import { Delete } from '@material-ui/icons';
 import React, { useState } from 'react';
 
 type Props = {
@@ -44,7 +52,11 @@ export default function ArrayProxyStepViewerItem(props: Props): JSX.Element {
           </Grid>
         </Grid>
       </Box>
-      <Box padding={1}>
+      <Box
+        padding={1}
+        onMouseEnter={() => setDeletionTooltipShowed(true)}
+        onMouseLeave={() => setDeletionTooltipShowed(false)}
+      >
         <Paper style={{ backgroundColor: props.indexColor }}>
           <Grid
             container
@@ -64,18 +76,16 @@ export default function ArrayProxyStepViewerItem(props: Props): JSX.Element {
               </Button>
             </Grid>
             <Grid item>
-              <Box
-                onMouseEnter={() => setDeletionTooltipShowed(true)}
-                onMouseLeave={() => setDeletionTooltipShowed(false)}
-              >
-                {isDeletionTooltipShowed ? (
-                  <Button onClick={() => props.onDelete(props.index)}>
-                    delete
-                  </Button>
-                ) : (
-                  <Typography align="center">{props.index}</Typography>
-                )}
-              </Box>
+              {isDeletionTooltipShowed ? (
+                <IconButton
+                  style={{ padding: 0 }}
+                  onClick={() => props.onDelete(props.index)}
+                >
+                  <Delete />
+                </IconButton>
+              ) : (
+                <Typography align="center">{props.index}</Typography>
+              )}
             </Grid>
             <Grid item>
               <Button
