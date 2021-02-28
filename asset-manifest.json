@@ -1,24 +1,24 @@
 {
   "files": {
-    "main.css": "/array-sorts-visualizer/static/css/main.1c2158de.chunk.css",
-    "main.js": "/array-sorts-visualizer/static/js/main.ce826adb.chunk.js",
-    "main.js.map": "/array-sorts-visualizer/static/js/main.ce826adb.chunk.js.map",
+    "main.css": "/array-sorts-visualizer/static/css/main.e0c7e994.chunk.css",
+    "main.js": "/array-sorts-visualizer/static/js/main.6805ed75.chunk.js",
+    "main.js.map": "/array-sorts-visualizer/static/js/main.6805ed75.chunk.js.map",
     "runtime-main.js": "/array-sorts-visualizer/static/js/runtime-main.297fd046.js",
     "runtime-main.js.map": "/array-sorts-visualizer/static/js/runtime-main.297fd046.js.map",
-    "static/css/2.8cd74e97.chunk.css": "/array-sorts-visualizer/static/css/2.8cd74e97.chunk.css",
-    "static/js/2.3b082df0.chunk.js": "/array-sorts-visualizer/static/js/2.3b082df0.chunk.js",
-    "static/js/2.3b082df0.chunk.js.map": "/array-sorts-visualizer/static/js/2.3b082df0.chunk.js.map",
+    "static/css/2.e9a4d773.chunk.css": "/array-sorts-visualizer/static/css/2.e9a4d773.chunk.css",
+    "static/js/2.b082439b.chunk.js": "/array-sorts-visualizer/static/js/2.b082439b.chunk.js",
+    "static/js/2.b082439b.chunk.js.map": "/array-sorts-visualizer/static/js/2.b082439b.chunk.js.map",
     "index.html": "/array-sorts-visualizer/index.html",
-    "static/css/2.8cd74e97.chunk.css.map": "/array-sorts-visualizer/static/css/2.8cd74e97.chunk.css.map",
-    "static/css/main.1c2158de.chunk.css.map": "/array-sorts-visualizer/static/css/main.1c2158de.chunk.css.map",
-    "static/js/2.3b082df0.chunk.js.LICENSE.txt": "/array-sorts-visualizer/static/js/2.3b082df0.chunk.js.LICENSE.txt",
+    "static/css/2.e9a4d773.chunk.css.map": "/array-sorts-visualizer/static/css/2.e9a4d773.chunk.css.map",
+    "static/css/main.e0c7e994.chunk.css.map": "/array-sorts-visualizer/static/css/main.e0c7e994.chunk.css.map",
+    "static/js/2.b082439b.chunk.js.LICENSE.txt": "/array-sorts-visualizer/static/js/2.b082439b.chunk.js.LICENSE.txt",
     "static/media/index.css": "/array-sorts-visualizer/static/media/roboto-vietnamese-400-normal.52cebac0.woff2"
   },
   "entrypoints": [
     "static/js/runtime-main.297fd046.js",
-    "static/css/2.8cd74e97.chunk.css",
-    "static/js/2.3b082df0.chunk.js",
-    "static/css/main.1c2158de.chunk.css",
-    "static/js/main.ce826adb.chunk.js"
+    "static/css/2.e9a4d773.chunk.css",
+    "static/js/2.b082439b.chunk.js",
+    "static/css/main.e0c7e994.chunk.css",
+    "static/js/main.6805ed75.chunk.js"
   ]
 }
