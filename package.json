@@ -1,0 +1,51 @@
+{
+  "name": "array-sorts-visualizer",
+  "author": {
+    "name": "TrickyBestia",
+    "email": "trickybestia@gmail.com",
+    "url": "https://github.com/TrickyBestia"
+  },
+  "version": "1.0.0",
+  "homepage": "https://github.com/TrickyBestia/array-sorts-visualizer",
+  "license": "CC-BY-NC-ND-4.0",
+  "private": true,
+  "dependencies": {
+    "@fontsource/roboto": "^4.2.1",
+    "@material-ui/core": "^4.11.3",
+    "prismjs": "^1.23.0",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "react-simple-code-editor": "^0.11.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "lint": "eslint src/*.{js,ts,tsx} src/*/*/*.{js,ts,tsx}"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@types/prismjs": "^1.16.3",
+    "@types/react": "^17.0.2",
+    "@types/react-dom": "^17.0.1",
+    "@typescript-eslint/eslint-plugin": "^4.15.2",
+    "@typescript-eslint/parser": "^4.15.2",
+    "eslint": "^7.20.0",
+    "eslint-config-prettier": "^8.1.0",
+    "eslint-plugin-prettier": "^3.3.1",
+    "eslint-plugin-react": "^7.22.0",
+    "prettier": "^2.2.1",
+    "react-scripts": "^4.0.3",
+    "typescript": "^4.2.2"
+  }
+}
