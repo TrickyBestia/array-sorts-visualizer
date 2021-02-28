@@ -56,7 +56,7 @@ export default function Content(): JSX.Element {
           style={{ flexGrow: 1, flexBasis: 0 }}
           spacing={1}
         >
-          <Grid item style={{ flexGrow: 2, flexBasis: 0 }}>
+          <Grid item style={{ flexGrow: 1, flexBasis: 0 }}>
             <ArrayProxyStepViewer
               arrayProxyStep={currentStep}
               onMoveLeft={(index) => {
@@ -97,7 +97,7 @@ export default function Content(): JSX.Element {
               }}
             />
           </Grid>
-          <Grid item style={{ flexGrow: 1, flexBasis: 0 }}>
+          <Grid item style={{ flexBasis: 0 }}>
             <ExecutionController
               sortIterator={iterator}
               arrayProxy={arrayProxy}
