@@ -49,7 +49,6 @@ export default function ExecutionController(props: Props): JSX.Element {
         <Button
           style={{ backgroundColor: '#00DD00' }}
           variant="outlined"
-          disabled={!isEnabled}
           onClick={() => {
             const promptResult = prompt('Element?', '');
             if (promptResult === null) return;
