@@ -10,9 +10,10 @@ type Props = {
   onDelete: (index: number) => void;
 };
 export default function ArrayProxyStepViewer(props: Props): JSX.Element {
+  const theme = useTheme();
   const maxItem = Math.max(...props.arrayProxyStep.array);
   const items = props.arrayProxyStep.array.map((item, index) => {
-    let indexColor = useTheme().palette.secondary.main;
+    let indexColor = theme.palette.secondary.main;
     if (
       index === props.arrayProxyStep.primaryIndex &&
       index === props.arrayProxyStep.secondaryIndex
@@ -41,7 +42,7 @@ export default function ArrayProxyStepViewer(props: Props): JSX.Element {
     <Paper
       style={{
         height: '100%',
-        backgroundColor: useTheme().palette.primary.light,
+        backgroundColor: theme.palette.primary.light,
       }}
     >
       <Grid
