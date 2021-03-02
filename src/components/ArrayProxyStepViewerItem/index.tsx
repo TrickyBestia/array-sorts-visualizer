@@ -71,7 +71,7 @@ export default function ArrayProxyStepViewerItem(props: Props): JSX.Element {
             <Grid item>
               <Button
                 disabled={!props.canMoveLeft}
-                style={{ minWidth: 0 }}
+                style={{ minWidth: 0, width: 0 }}
                 onClick={() => props.onMoveLeft(props.index)}
               >
                 {'<'}
@@ -82,6 +82,7 @@ export default function ArrayProxyStepViewerItem(props: Props): JSX.Element {
                 <IconButton
                   style={{ padding: 0 }}
                   onClick={() => props.onDelete(props.index)}
+                  size="small"
                 >
                   <Delete />
                 </IconButton>
@@ -92,7 +93,7 @@ export default function ArrayProxyStepViewerItem(props: Props): JSX.Element {
             <Grid item>
               <Button
                 disabled={!props.canMoveRight}
-                style={{ minWidth: 0 }}
+                style={{ minWidth: 0, width: 0 }}
                 onClick={() => props.onMoveRight(props.index)}
               >
                 {'>'}
