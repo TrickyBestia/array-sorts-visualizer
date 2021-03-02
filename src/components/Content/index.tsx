@@ -44,7 +44,8 @@ export default function Content(): JSX.Element {
             style={{ height: '100%' }}
             onChange={(value) => {
               setIterator(() => parse(value, arrayProxy));
-              setSteps([currentStep]);
+              setCurrentStep(arrayProxy.currentState);
+              setSteps([arrayProxy.currentState]);
             }}
             snippets={snippets}
           />
