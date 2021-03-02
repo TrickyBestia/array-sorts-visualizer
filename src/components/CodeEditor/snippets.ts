@@ -23,5 +23,24 @@ const snippets: { name: string; value: string }[] = [
   }
 }`,
   },
+  {
+    name: 'comb sort',
+    value: `function* sort(arrayProxy) {
+  const gapShrinkFactor = 1.247;
+  let gap = Math.floor(arrayProxy.array.length / gapShrinkFactor);
+  while (gap > 0) {
+    for (let i = 0; i + gap < arrayProxy.array.length; i++) {
+      arrayProxy.primaryIndex = i;
+      arrayProxy.secondaryIndex = i + gap;
+      if (arrayProxy.compare() > 0) {
+        yield undefined;
+        arrayProxy.swap();
+      }
+      yield undefined;
+    }
+    gap = Math.floor(gap / gapShrinkFactor);
+  }
+}`,
+  },
 ];
 export default snippets;
