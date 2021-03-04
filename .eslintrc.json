@@ -18,5 +18,10 @@
   "plugins": ["@typescript-eslint", "react", "prettier"],
   "rules": {
     "@typescript-eslint/no-explicit-any": "off"
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
   }
 }
