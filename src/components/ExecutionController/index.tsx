@@ -53,10 +53,10 @@ export default function ExecutionController(props: Props): JSX.Element {
             const promptResult = prompt('Element?', '');
             if (promptResult === null) return;
             const element = Number.parseInt(promptResult);
-            if (isNaN(element)) return false;
+            if (isNaN(element)) return;
             if (element <= 0) {
               alert('The number must be positive!');
-              return false;
+              return;
             }
             props.addNewElement(element);
           }}
