@@ -12,7 +12,7 @@ const snippets: { name: string; value: string }[] = [
       arrayProxy.primaryIndex = j;
       arrayProxy.secondaryIndex = j + 1;
       yield undefined;
-      if (arrayProxy.compare() > 0) {
+      if (arrayProxy.compare() === 1) {
         yield undefined;
         arrayProxy.swap();
         wasSwap = true;
@@ -32,7 +32,7 @@ const snippets: { name: string; value: string }[] = [
     for (let i = 0; i + gap < arrayProxy.array.length; i++) {
       arrayProxy.primaryIndex = i;
       arrayProxy.secondaryIndex = i + gap;
-      if (arrayProxy.compare() > 0) {
+      if (arrayProxy.compare() === 1) {
         yield undefined;
         arrayProxy.swap();
       }
