@@ -4,12 +4,14 @@ import { CSSProperties } from 'react';
 import { Box, useTheme } from '@material-ui/core';
 import React from 'react';
 
-export default function App(): JSX.Element {
+const App = (): JSX.Element => {
+  const theme = useTheme();
+
   return (
     <Box
       style={{
         ...styles.app,
-        backgroundColor: useTheme().palette.primary.main,
+        backgroundColor: theme.palette.primary.main,
       }}
     >
       <Header />
@@ -18,7 +20,8 @@ export default function App(): JSX.Element {
       </Box>
     </Box>
   );
-}
+};
+
 const styles: { app: CSSProperties; content: CSSProperties } = {
   app: {
     display: 'flex',
@@ -33,3 +36,5 @@ const styles: { app: CSSProperties; content: CSSProperties } = {
     flexGrow: 1,
   },
 };
+
+export default App;
