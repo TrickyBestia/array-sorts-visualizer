@@ -21,8 +21,10 @@ type Props = {
   onMoveLeft: (index: number) => void;
   onDelete: (index: number) => void;
 };
-export default function ArrayProxyStepViewerItem(props: Props): JSX.Element {
-  const [isDeletionTooltipShowed, setDeletionTooltipShowed] = useState(false);
+
+const ArrayProxyStepViewerItem = (props: Props): JSX.Element => {
+  const [isHovered, setIsHovered] = useState(false);
+
   return (
     <Grid
       container
@@ -56,8 +58,8 @@ export default function ArrayProxyStepViewerItem(props: Props): JSX.Element {
       </Box>
       <Box
         padding={1}
-        onMouseEnter={() => setDeletionTooltipShowed(true)}
-        onMouseLeave={() => setDeletionTooltipShowed(false)}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
       >
         <Paper style={{ backgroundColor: props.indexColor }}>
           <Grid
@@ -78,7 +80,7 @@ export default function ArrayProxyStepViewerItem(props: Props): JSX.Element {
               </Button>
             </Grid>
             <Grid item>
-              {isDeletionTooltipShowed ? (
+              {isHovered ? (
                 <IconButton
                   style={{ padding: 0 }}
                   onClick={() => props.onDelete(props.index)}
@@ -104,4 +106,6 @@ export default function ArrayProxyStepViewerItem(props: Props): JSX.Element {
       </Box>
     </Grid>
   );
-}
+};
+
+export default ArrayProxyStepViewerItem;
