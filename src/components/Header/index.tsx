@@ -7,17 +7,17 @@ import {
   useTheme,
 } from '@material-ui/core';
 import React from 'react';
+import CSS from 'csstype';
 import githubLogo from './githubLogo.png';
 
-type Props = {
-  style?: React.HTMLAttributes<'header'>;
-};
-export default function Header(props: Props): JSX.Element {
+const Header = (): JSX.Element => {
+  const theme = useTheme();
+
   return (
-    <header style={props.style}>
+    <header>
       <AppBar
         position="relative"
-        style={{ backgroundColor: useTheme().palette.primary.dark }}
+        style={{ backgroundColor: theme.palette.primary.dark }}
       >
         <Container fixed>
           <Toolbar>
@@ -26,18 +26,27 @@ export default function Header(props: Props): JSX.Element {
               rel="noreferrer"
               target="_blank"
               href="https://github.com/TrickyBestia/array-sorts-visualizer"
-              style={{ marginLeft: 'auto' }}
+              style={styles.githubButton}
             >
-              <img
-                src={githubLogo}
-                style={{
-                  objectFit: 'fill',
-                }}
-              />
+              <img src={githubLogo} style={styles.githubLogo} />
             </Button>
           </Toolbar>
         </Container>
       </AppBar>
     </header>
   );
-}
+};
+
+const styles: {
+  githubButton: CSS.Properties;
+  githubLogo: CSS.Properties;
+} = {
+  githubButton: {
+    marginLeft: 'auto',
+  },
+  githubLogo: {
+    objectFit: 'fill',
+  },
+};
+
+export default Header;
