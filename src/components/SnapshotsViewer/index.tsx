@@ -1,21 +1,22 @@
 import { Grid, Paper, Typography, Box, useTheme } from '@material-ui/core';
 import React from 'react';
-import ArrayProxyStep from '../../utils/ArrayProxyStep';
+import ArrayProxySnapshot from '../../utils/ArrayProxySnapshot';
 
 type Props = {
-  steps: readonly ArrayProxyStep[];
-  onSelectedStep: (step: ArrayProxyStep) => void;
+  snapshots: readonly ArrayProxySnapshot[];
+  onSelectedSnapshot?: (step: ArrayProxySnapshot) => void;
 };
-export default function StepsViewer(props: Props): JSX.Element {
+
+const SnapshotsViewer = (props: Props): JSX.Element => {
   const theme = useTheme();
-  const renderedSteps = props.steps
+  const renderedSteps = props.snapshots
     .slice()
     .reverse()
     .map((step, index) => {
       return (
         <Grid item key={index}>
           <Paper
-            onClick={() => props.onSelectedStep(step)}
+            onClick={() => props.onSelectedSnapshot?.(step)}
             style={{
               cursor: 'pointer',
               backgroundColor: theme.palette.primary.light,
@@ -38,4 +39,6 @@ export default function StepsViewer(props: Props): JSX.Element {
       {renderedSteps}
     </Grid>
   );
-}
+};
+
+export default SnapshotsViewer;

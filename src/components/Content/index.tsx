@@ -1,33 +1,55 @@
 import React, { useState } from 'react';
 import CodeEditor from '../CodeEditor';
 import { Box, Grid } from '@material-ui/core';
-import ArrayProxyStepViewer from '../ArrayProxyStepViewer';
+import ArrayProxySnapshotViewer from '../ArrayProxySnapshotViewer';
 import snippets from '../CodeEditor/snippets';
-import StepsViewer from '../StepsViewer';
+import SnapshotsViewer from '../SnapshotsViewer';
 import ExecutionController from '../ExecutionController';
 import ArrayProxy from '../../utils/ArrayProxy';
-import ArrayProxyStep from '../../utils/ArrayProxyStep';
 import parse from '../../utils/SortFunctionParser';
+import ArrayProxySnapshot from '../../utils/ArrayProxySnapshot';
 
-export default function Content(): JSX.Element {
+const Content = (): JSX.Element => {
   const [iterator, setIterator] = useState<
     Iterator<undefined, undefined, undefined> | undefined
   >(undefined);
-  const [arrayProxy] = useState(new ArrayProxy([3, 2, 5, 8, 5, 6]));
-  const [currentStep, setCurrentStep] = useState(arrayProxy.currentState);
-  const [steps, setSteps] = useState([
-    currentStep,
-  ] as readonly ArrayProxyStep[]);
-  arrayProxy.onStep = (step) => {
-    setSteps((steps) => {
-      const newSteps = steps.slice();
-      newSteps.pop();
-      newSteps.push(step);
-      setCurrentStep(arrayProxy.currentState);
-      newSteps.push(currentStep);
-      return newSteps;
+  const [arrayProxy] = useState(() => {
+    const array = new Array<number>(10);
+    for (let i = 0; i < array.length; i++) array[i] = i + 1;
+
+    let tmp = 0;
+    let current = 0;
+    let top = array.length;
+    while (--top) {
+      current = Math.floor(Math.random() * (top + 1));
+      tmp = array[current];
+      array[current] = array[top];
+      array[top] = tmp;
+    }
+
+    const arrayProxy = new ArrayProxy();
+    arrayProxy.array = array;
+
+    return arrayProxy;
+  });
+  const [currentSnapshot, setCurrentSnapshot] = useState(() =>
+    arrayProxy.makeSnapshot('Current state...'),
+  );
+  const [snapshots, setSnapshots] = useState(
+    () => [currentSnapshot] as readonly ArrayProxySnapshot[],
+  );
+
+  const onStep = (snapshot: ArrayProxySnapshot) => {
+    setSnapshots((snapshots) => {
+      const newSnapshots = snapshots.slice();
+      newSnapshots.pop();
+      newSnapshots.push(snapshot);
+      setCurrentSnapshot(arrayProxy.makeSnapshot('Current state...'));
+      newSnapshots.push(currentSnapshot);
+      return newSnapshots;
     });
   };
+  arrayProxy.onStep = onStep;
 
   return (
     <Box component="main" style={{ width: '100%', height: '100%' }}>
@@ -44,8 +66,8 @@ export default function Content(): JSX.Element {
             style={{ height: '100%' }}
             onChange={(value) => {
               setIterator(() => parse(value, arrayProxy));
-              setCurrentStep(arrayProxy.currentState);
-              setSteps([arrayProxy.currentState]);
+              setCurrentSnapshot(arrayProxy.makeSnapshot('Current state...'));
+              setSnapshots([currentSnapshot]);
             }}
             snippets={snippets}
           />
@@ -58,42 +80,36 @@ export default function Content(): JSX.Element {
           spacing={1}
         >
           <Grid item style={{ flexGrow: 1, flexBasis: 0 }}>
-            <ArrayProxyStepViewer
-              arrayProxyStep={currentStep}
+            <ArrayProxySnapshotViewer
+              snapshot={currentSnapshot}
               onMoveLeft={(index) => {
-                const newArray = arrayProxy.array.slice();
-                [newArray[index], newArray[index - 1]] = [
-                  newArray[index - 1],
-                  newArray[index],
+                [arrayProxy.array[index], arrayProxy.array[index - 1]] = [
+                  arrayProxy.array[index - 1],
+                  arrayProxy.array[index],
                 ];
-                arrayProxy.edit(
-                  newArray,
-                  undefined,
-                  undefined,
-                  `Moved item at ${index} left manually.`,
+                onStep(
+                  arrayProxy.makeSnapshot(
+                    `Moved item at ${index} left manually.`,
+                  ),
                 );
               }}
               onMoveRight={(index) => {
-                const newArray = arrayProxy.array.slice();
-                [newArray[index], newArray[index + 1]] = [
-                  newArray[index + 1],
-                  newArray[index],
+                [arrayProxy.array[index], arrayProxy.array[index + 1]] = [
+                  arrayProxy.array[index + 1],
+                  arrayProxy.array[index],
                 ];
-                arrayProxy.edit(
-                  newArray,
-                  undefined,
-                  undefined,
-                  `Moved item at ${index} right manually.`,
+                onStep(
+                  arrayProxy.makeSnapshot(
+                    `Moved item at ${index} right manually.`,
+                  ),
                 );
               }}
               onDelete={(index) => {
-                const newArray = arrayProxy.array.slice();
-                newArray.splice(index, 1);
-                arrayProxy.edit(
-                  newArray,
-                  undefined,
-                  undefined,
-                  `Deleted item at ${index} right manually.`,
+                arrayProxy.array.splice(index, 1);
+                onStep(
+                  arrayProxy.makeSnapshot(
+                    `Deleted item at ${index} right manually.`,
+                  ),
                 );
               }}
             />
@@ -103,23 +119,28 @@ export default function Content(): JSX.Element {
               sortIterator={iterator}
               arrayProxy={arrayProxy}
               onSortDone={() => {
-                arrayProxy.edit(undefined, undefined, undefined, 'Sort done.');
+                onStep(arrayProxy.makeSnapshot('Sort done.'));
               }}
               addNewElement={(element) => {
-                arrayProxy.edit(
-                  arrayProxy.array.slice().concat([element]),
-                  undefined,
-                  undefined,
-                  `Add element of value ${element} manually.`,
+                arrayProxy.array.push(element);
+                onStep(
+                  arrayProxy.makeSnapshot(
+                    `Add element of value ${element} manually.`,
+                  ),
                 );
               }}
             />
           </Grid>
         </Grid>
         <Grid item style={{ flexGrow: 1, flexBasis: 0, overflowY: 'auto' }}>
-          <StepsViewer steps={steps} onSelectedStep={setCurrentStep} />
+          <SnapshotsViewer
+            snapshots={snapshots}
+            onSelectedSnapshot={setCurrentSnapshot}
+          />
         </Grid>
       </Grid>
     </Box>
   );
-}
+};
+
+export default Content;

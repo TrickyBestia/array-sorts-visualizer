@@ -1,4 +1,6 @@
-const snippets: { name: string; value: string }[] = [
+import { List } from 'immutable';
+
+const snippets: List<{ name: string; value: string }> = List([
   {
     name: 'default',
     value: 'function* sort(arrayProxy) {\n  \n}',
@@ -42,5 +44,6 @@ const snippets: { name: string; value: string }[] = [
   }
 }`,
   },
-];
+]);
+
 export default snippets;

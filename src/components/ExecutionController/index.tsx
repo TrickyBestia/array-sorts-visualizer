@@ -9,7 +9,8 @@ type Props = {
   onSortDone: () => void;
   addNewElement: (element: number) => void;
 };
-export default function ExecutionController(props: Props): JSX.Element {
+
+const ExecutionController = (props: Props): JSX.Element => {
   const isEnabled = props.sortIterator !== undefined;
   return (
     <Grid container direction="row" spacing={1}>
@@ -66,4 +67,6 @@ export default function ExecutionController(props: Props): JSX.Element {
       </Grid>
     </Grid>
   );
-}
+};
+
+export default ExecutionController;

@@ -13,36 +13,20 @@ import {
 } from '@material-ui/core';
 import 'prism-themes/themes/prism-vsc-dark-plus.css';
 import './style.css';
+import { List } from 'immutable';
 
 type Props = {
-  snippets: { name: string; value: string }[];
+  snippets: List<{ name: string; value: string }>;
   onChange: { (value: string): void };
   readOnly: boolean;
   style: BoxProps;
 };
-export default function CodeEditor(props: Props): JSX.Element {
+
+const CodeEditor = (props: Props): JSX.Element => {
   const [value, setValue] = useState(
     props.snippets.find((snippet) => snippet.name === 'default')?.value ?? '',
   );
   useEffect(() => props.onChange(value), []);
-  const snippetButtons: JSX.Element[] = [];
-  props.snippets.forEach((snippet) => {
-    snippetButtons.push(
-      <Grid item key={snippet.name}>
-        <Button
-          color="secondary"
-          disabled={props.readOnly}
-          variant="contained"
-          onClick={() => {
-            setValue(snippet.value);
-            props.onChange(snippet.value);
-          }}
-        >
-          {snippet.name}
-        </Button>
-      </Grid>,
-    );
-  });
 
   return (
     <Box
@@ -91,9 +75,25 @@ export default function CodeEditor(props: Props): JSX.Element {
       </Paper>
       <Box marginTop={1}>
         <Grid spacing={1} justify="space-between" container>
-          {snippetButtons}
+          {props.snippets.map((snippet) => (
+            <Grid item key={snippet.name}>
+              <Button
+                color="secondary"
+                disabled={props.readOnly}
+                variant="contained"
+                onClick={() => {
+                  setValue(snippet.value);
+                  props.onChange(snippet.value);
+                }}
+              >
+                {snippet.name}
+              </Button>
+            </Grid>
+          ))}
         </Grid>
       </Box>
     </Box>
   );
-}
+};
+
+export default CodeEditor;

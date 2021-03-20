@@ -17,12 +17,12 @@ type Props = {
   indexColor: string;
   canMoveRight: boolean;
   canMoveLeft: boolean;
-  onMoveRight: (index: number) => void;
-  onMoveLeft: (index: number) => void;
-  onDelete: (index: number) => void;
+  onMoveRight: () => void;
+  onMoveLeft: () => void;
+  onDelete: () => void;
 };
 
-const ArrayProxyStepViewerItem = (props: Props): JSX.Element => {
+const ArrayProxySnapshotViewerItem = (props: Props): JSX.Element => {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
@@ -74,7 +74,7 @@ const ArrayProxyStepViewerItem = (props: Props): JSX.Element => {
               <Button
                 disabled={!props.canMoveLeft}
                 style={{ minWidth: 0, width: 0 }}
-                onClick={() => props.onMoveLeft(props.index)}
+                onClick={props.onMoveLeft}
               >
                 {'<'}
               </Button>
@@ -83,7 +83,7 @@ const ArrayProxyStepViewerItem = (props: Props): JSX.Element => {
               {isHovered ? (
                 <IconButton
                   style={{ padding: 0 }}
-                  onClick={() => props.onDelete(props.index)}
+                  onClick={props.onDelete}
                   size="small"
                 >
                   <Delete />
@@ -96,7 +96,7 @@ const ArrayProxyStepViewerItem = (props: Props): JSX.Element => {
               <Button
                 disabled={!props.canMoveRight}
                 style={{ minWidth: 0, width: 0 }}
-                onClick={() => props.onMoveRight(props.index)}
+                onClick={props.onMoveRight}
               >
                 {'>'}
               </Button>
@@ -108,4 +108,4 @@ const ArrayProxyStepViewerItem = (props: Props): JSX.Element => {
   );
 };
 
-export default ArrayProxyStepViewerItem;
+export default ArrayProxySnapshotViewerItem;
