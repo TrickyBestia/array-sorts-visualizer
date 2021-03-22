@@ -1,8 +1,7 @@
 import Header from '../Header';
 import Content from '../Content';
-import { CSSProperties } from 'react';
+import React, { CSSProperties } from 'react';
 import { Box, useTheme } from '@material-ui/core';
-import React from 'react';
 
 const App = (): JSX.Element => {
   const theme = useTheme();
